@@ -1,16 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import styles from './Navbar.module.css'
+import { getImageUrl } from '../../utils'
 
 const Navbar = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
     return (
         <nav className={styles.navbar}>
             <div>
-                <a className={styles.title} href="/"><img src="assets/logo/Logo1.svg" alt="Ahmad Portfolio   Website Logo" />
+                <a className={styles.title} href="/"><img src="assets/logo/Logo.svg" alt="Ahmad Portfolio Website Logo" />
                 </a>
             </div>
             <div className={styles.menu}>
-                <ul className={styles.menuItems}>
+                <img className={styles.menuBtn} src={menuOpen ? getImageUrl("/assets/nav/closeIcon.png") : getImageUrl("/assets/nav/menuIcon.png")}
+                    alt='menu-button'
+                    onClick={() => setMenuOpen(!menuOpen)}
+                />
+                <ul className={`${styles.menuItems} ${menuOpen && styles.menuOpen}`}>
                     <li><a href="#about">About</a></li>
                     <li><a href="#experience">Experience</a></li>
                     <li><a href="#projects">Projects</a></li>
